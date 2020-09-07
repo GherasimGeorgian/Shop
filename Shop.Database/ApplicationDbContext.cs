@@ -17,5 +17,16 @@ namespace Shop.Database
 
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+
+        //The entity type 'OrderProduct' requires a primary key to be defined. If you intended to use a keyless entity type call 'HasNoKey()'.
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); //The entity type 'IdentityUserLogin<string>' requires a primary key to be defined.If you intended to use a keyless entity type call 'HasNoKey()'.
+           modelBuilder.Entity<OrderProduct>()
+                .HasKey(x => new { x.ProductId, x.OrderId });
+        }
     }
 }
