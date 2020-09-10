@@ -30,8 +30,8 @@ namespace Shop.UI
 
             // adaugam appdbcontext //Install-Package Microsoft.EntityFrameworkCore.SqlServer
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"]));
+        
 
-           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,8 +54,8 @@ namespace Shop.UI
             app.UseRouting();
 
             app.UseAuthorization();
-
            
+
 
             app.UseEndpoints(endpoints =>
             {

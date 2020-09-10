@@ -6,25 +6,27 @@
 
 <div id="app">
 
-     
         <button v-on:click="getProducts">Get Products</button>
-     
-    
-    
-    <div>
-        <p v-for="product in products">
-        {{product.id}} - {{product.name}} - {{product.description}}
-        </p>
 
-    </div>
+        <div>
+            <p v-for="(product, index) in products">
+           
+                {{product.id}} - {{product.name}} - {{product.description}}
+                <a @@click="editProduct(product, index)">Edit</a>
+                <a @@click="deleteProduct(product.id, index)">Remove</a>
+            </p>
+
+        </div>
     
     
-    <div>
-        <input v-model="productModel.name">
-        <input v-model="productModel.description">
-        <input v-model="productModel.value">
-        <button @@click="createProduct">Create Product</button>
-    </div>
+        <div>
+            <input v-model="productModel.name">
+            <input v-model="productModel.description">
+            <input v-model="productModel.value">
+            
+            <button @@click="createProduct" v-if="!productModel.id">Create Product</button>
+            <button @@click="updateProduct(productModel.id)" v-else>Update Product</button>
+        </div>
 </div>
 
 @section scripts{

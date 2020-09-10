@@ -21,7 +21,7 @@ namespace Shop.Application.ProductsAdmin
             {
                 Name = request.Name,
                 Description = request.Description,
-                Value = request.Value
+                Value = decimal.Parse(request.Value)
             };
 
             _context.Products.Add(product);
@@ -39,7 +39,7 @@ namespace Shop.Application.ProductsAdmin
         {
             public string Name { get; set; }
             public string Description { get; set; }
-            public decimal Value { get; set; }
+            public string Value { get; set; }
         }
 
         public class Response
