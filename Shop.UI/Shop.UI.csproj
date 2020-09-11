@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Shop.Database\Shop.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
 </Project>

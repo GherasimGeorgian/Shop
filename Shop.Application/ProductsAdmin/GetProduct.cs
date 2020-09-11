@@ -31,5 +31,5 @@ namespace Shop.Application.ProductsAdmin
             public string Value { get; set; }
         }
     }
-   
+
 }
