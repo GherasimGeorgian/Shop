@@ -1,5 +1,9 @@
 # Shop
 
+technologies used: Vue.js,Bulma 
+
+ToDo:
+
 - Products -Category/Type
 
 - Cart
