@@ -5,22 +5,33 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Globalization;
+
 namespace Shop.Application.ProductsAdmin
 {
     public class UpdateProduct
     {
         private ApplicationDbContext _context;
-
+      
         public UpdateProduct(ApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<bool> Do(Request req)
+        public async Task<Response> Do(Request req)
         {
-           // var Product = _context.Products.FirstOrDefault(x => x.Id == id);
-            //   _context.Products.Remove(Product);
+             var Product = _context.Products.FirstOrDefault(x => x.Id == req.Id);
+            Product.Name = req.Name;
+            Product.Description = req.Description;
+            Product.Value = decimal.Parse(req.Value);
+
             await _context.SaveChangesAsync();
-            return true;
+            return new Response
+            {
+                Id = Product.Id,
+                Name = Product.Name,
+                Description = Product.Description,
+                Value = Product.Value
+            };
         }
         public class Request
         {

@@ -19,7 +19,7 @@ namespace Shop.Application.ProductsAdmin
                 Id = x.Id,
                 Name = x.Name,
                 Description = x.Description,
-                Value = $"$ {x.Value.ToString("N2")}", // 1100.40 ---> 1,100.40 ---?> $1,100.40
+                Value = $"{x.Value.ToString("N2")}", // 1100.40 ---> 1,100.40 ---?> $1,100.40
             });
 
         public class ProductViewModel
