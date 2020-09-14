@@ -10,4 +10,4 @@ ToDo:
 
 - Checkout
 
-- Payments -Stripe.js
+- Payments -Stripe.js/Paypal
