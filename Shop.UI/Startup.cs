@@ -25,12 +25,23 @@ namespace Shop.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllers(options => options.EnableEndpointRouting = false);
 
+            services.AddRazorPages();
+           
 
             // adaugam appdbcontext //Install-Package Microsoft.EntityFrameworkCore.SqlServer
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"]));
-        
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "Cart";
+                options.Cookie.MaxAge = TimeSpan.FromDays(365);
+                options.Cookie.IsEssential = true;
+            });
+           
 
         }
 
@@ -54,14 +65,14 @@ namespace Shop.UI
             app.UseRouting();
 
             app.UseAuthorization();
+
            
 
+            app.UseSession();
+            app.UseCookiePolicy();
+            app.UseMvc();
+           
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapControllers();//Failed to load resource: the server responded with a status of 404 ()
-            });
         }
     }
 }
