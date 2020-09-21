@@ -10,4 +10,6 @@ ToDo:
 
 - Checkout
 
-- Payments -Stripe.js/Paypal
+- Payments -Stripe.js/--->Paypal
+
+- Real time chat
