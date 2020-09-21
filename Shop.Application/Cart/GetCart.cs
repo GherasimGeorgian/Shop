@@ -33,22 +33,27 @@ namespace Shop.Application.Cart
         }
 
        
-        public Response Do()
+        public IEnumerable<Response> Do()
         {
-            //ToDo: account for multiple items   in the cart 
             var stringObject = _session.GetString("cart");
-            var cartProduct = JsonConvert.DeserializeObject<CartProduct>(stringObject);
 
+            if (string.IsNullOrEmpty(stringObject))
+            {
+                return new List<Response>();
+            }
+
+            var cartList = JsonConvert.DeserializeObject<List<CartProduct>>(stringObject);
             var response = _context.Stocks
-                .Include(x => x.Product)
-                .Where(x => x.Id == cartProduct.StockId)
+                .Include(x => x.Product).AsEnumerable()
+                .Where(x => cartList.Any(y => y.StockId == x.Id))
                 .Select(x => new Response
                 {
                     Name = x.Product.Name,
                     Value = x.Product.Value.ToString(),
-                    Qty = cartProduct.Qty,
-                    StockId = x.Id
-                }).FirstOrDefault();
+                    StockId = x.Id,
+                    Qty = cartList.FirstOrDefault(y => y.StockId == x.Id).Qty
+                   
+                }).ToList();
 
             return response;
         }
