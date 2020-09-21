@@ -12,3 +12,10 @@
     <hr />
     }
 </div>
+
+<vc:cart view="Small"></vc:cart>
+@*<vc:cart view="Default"></vc:cart>
+
+<hr />
+
+@await Component.InvokeAsync("Cart",new { view = "Small"})*@
