@@ -13,3 +13,5 @@ ToDo:
 - Payments -Stripe.js/--->Paypal
 
 - Real time chat
+
+---->Add unit tests 
