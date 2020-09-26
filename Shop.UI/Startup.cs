@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Database;
+using Stripe;
 namespace Shop.UI
 {
     public class Startup
@@ -41,7 +42,7 @@ namespace Shop.UI
                 options.Cookie.MaxAge = TimeSpan.FromDays(365);
                 options.Cookie.IsEssential = true;
             });
-           
+           StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
 
         }
 
