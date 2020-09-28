@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shop.Application.ProductsAdmin;
 using Shop.Application.StockAdmin;
 using Shop.Database;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shop.UI.Controllers
 {
+    [AllowAnonymous]
     [Route("[controller]")]
     public class AdminController :Controller
     {
