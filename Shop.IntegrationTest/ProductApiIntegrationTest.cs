@@ -26,28 +26,5 @@ namespace Shop.IntegrationTest
                
             }
         }
-
-        [Fact]
-        public async Task Test_Post()
-        {
-            using (var client = new TestClientProvider().Client)
-            {
-                var response = await client.PostAsync("Admin"
-               , new StringContent(
-               JsonConvert.SerializeObject(new Shop.Application.ProductsAdmin.CreateProduct.Request()
-               {
-                   Name = "caca",
-                   Description = "caca desc",
-                   Value = "11.22"
-               }),
-           Encoding.UTF8,
-           "application/json"));
-
-                response.EnsureSuccessStatusCode();
-
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            }
-        }
     }
 }
